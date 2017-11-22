@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 process treebanks, get CFG counts
 @author: Hai Hu
@@ -44,7 +45,7 @@ class PCFG():
         self.lex_rule = {}
         self.grm_lhss = {} # left hand side symbols for grammar rules
         # grm_lhss is a dict of dicts:
-        # {S: {'NP VP':2, 'NP VP NP':3}, VP ...}
+        # {'S': {'NP VP':2, 'NP VP NP':3}, 'VP': {} ...}
 
     def addGrmRule(self, rule):
         self.grm_rule[rule] = self.grm_rule.get(rule, 0)+1
@@ -57,7 +58,7 @@ class PCFG():
     def addLexRule(self, rule):
         self.lex_rule[rule] = self.lex_rule.get(rule, 0)+1
 
-def getPCFG(fn, funcTag=False):
+def getPCFG(fn, tagToCheck=None, verbose=False, funcTag=False):
     # if funcTag: we have NP-PN-SBJ, otherwise we have NP
     trees = open(fn, encoding='utf8').readlines()
     trees = [x.rstrip() for x in trees]
@@ -74,6 +75,11 @@ def getPCFG(fn, funcTag=False):
         # -------------- #
         # pre-processing
         # -------------- #
+        t = t.strip()
+        # if there are ( or ) in the sentence, corenlp doesn't change them to LOB, RCB,
+        # so we need to do that
+        t = t.replace('PU (', 'PU LOB').replace('PU )', 'PU RCB')
+
         # if no ROOT symbol, add ROOT
         if t.startswith('( ('): # TODO what about other treebanks: or t.startswith('((') or t.startswith('(  ('):
             # print('No ROOT symbol found! Added "ROOT" as ROOT symbol.')
@@ -153,7 +159,15 @@ def getPCFG(fn, funcTag=False):
                         tree.root = node_tmp
                     else:
                         # if not root, append to child
-                        stack[-1].children.append(node_tmp)
+                        try:
+                            stack[-1].children.append(node_tmp)
+                        except IndexError: 
+                            # TODO
+                            # there will be indexerror if in the input file, 
+                            # there are 2 trees in one line.
+                            print('\n!! two trees in one line:')
+                            print(t)
+                            break
 
                     # add to stack
                     stack.append(node_tmp)
@@ -163,8 +177,8 @@ def getPCFG(fn, funcTag=False):
                 LHS = lastNode.tag
                 RHS = ' '.join([x.tag for x in lastNode.children])
                 rule = LHS + ' -> ' + RHS
-                if rule == 'IP -> -NONE-':
-                    print(t)
+                # if rule == 'IP -> -NONE-':
+                #     print(t)
                 # print(rule)
                 # ----------------------------------------
                 grm_rule[rule] = grm_rule.get(rule, 0) + 1
@@ -178,31 +192,37 @@ def getPCFG(fn, funcTag=False):
 
     print()
 
+    if verbose:
+        print('\nlex_rule:')
+        for k, v in sorted(lex_rule.items(), key=lambda x: x[1]): # key is rule, value is count
+            print('{:>10}\t{}'.format(v, k))
+        
+        print('\ngrm_rule:')
+        for k, v in sorted(grm_rule.items(), key=lambda x: x[1]):
+            print('{:>10}\t{}'.format(v, k))
 
-    print('\nlex_rule:')
-    for k, v in lex_rule.items(): # key is rule, value is count
-        print('{:>10}\t{}'.format(v, k))
-    
-    print('\ngrm_rule:')
-    for k, v in grm_rule.items():
-        print('{:>10}\t{}'.format(v, k))
 
     print()
     print('num of lex rules:', len(lex_rule))
     print('num of grm rules:', len(grm_rule))
+    print()
 
-    # print("pcfg.grm_lhss['IP']")
-    # for k, v in pcfg.grm_lhss['IP'].items():
-    #     print('{:>10}\t{}'.format(v, k))
-    # print('\n'.join(pcfg.grm_lhss.keys()))
-    # print(len(pcfg.grm_lhss['IP']))
+    if tagToCheck is not None:
+        print("pcfg.grm_lhss[{}]".format(tagToCheck))
+        for k, v in sorted(pcfg.grm_lhss[tagToCheck].items(), key=lambda x: x[1]):
+            print('{:>10}\t{}'.format(v, k))
+        # print('\n'.join(pcfg.grm_lhss.keys()))
+        print('\n# of rule types :', len(pcfg.grm_lhss[tagToCheck]))
+        print('# of rule counts:', sum(pcfg.grm_lhss[tagToCheck].values()))
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Usage: python tbProcess.py filename')
+    if len(sys.argv) < 2:
+        print('Usage: python tbProcess.py filename (tag)')
         # getPCFG('brc_split2_test', False)
         # getPCFG('oneSent', False)
-    else:
-        getPCFG(sys.argv[1], False)
+    elif len(sys.argv) == 2:
+        getPCFG(sys.argv[1], verbose=True)
+    elif len(sys.argv) == 3:
+        getPCFG(sys.argv[1], sys.argv[2])
 
 
