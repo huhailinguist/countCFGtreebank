@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> 
+    
+    <xs:element name="note" type="containertype"/>
+    
+    <xs:complexType name="containertype">
+        <xs:sequence>
+            <xs:element name="ROOT" type="roottype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="roottype">
+        <xs:sequence>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="DVP" type="DVPtype"/>
+            <xs:element name="FRAG" type="FRAGtype"/>
+            <xs:element name="INTJ" type="INTJtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="LST" type="LSTtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="S" type="Stype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="VCD" type="VCDtype"/>
+            <xs:element name="VCP" type="VCPtype"/>
+            <xs:element name="VNV" type="VNVtype"/>
+            <xs:element name="VPT" type="VPTtype"/>
+            <xs:element name="VRD" type="VRDtype"/>
+            <xs:element name="VSB" type="VSBtype"/>
+            <xs:element name="WHNP" type="WHNPtype"/>
+            <xs:element name="WHPP" type="WHPPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ADJPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="JJ" type="stringtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="AD" type="stringtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="CC" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ADVPtype">
+        <xs:sequence>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="CS" type="stringtype"/>
+            <xs:element name="NN" type="stringtype"/>
+            <xs:element name="AD" type="stringtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CLPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="LC" type="stringtype"/>
+            <xs:element name="JJ" type="stringtype"/>
+            <xs:element name="M" type="stringtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CPtype">
+        <xs:sequence>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="WHPP" type="WHPPtype"/>
+            <xs:element name="DEC" type="stringtype"/>
+            <xs:element name="WHNP" type="WHNPtype"/>
+            <xs:element name="CS" type="stringtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="SP" type="stringtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <xs:complexType name="DNPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="P" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="DEC" type="stringtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="PN" type="stringtype"/>
+            <xs:element name="DEG" type="stringtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="DPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="PN" type="stringtype"/>
+            <xs:element name="DT" type="stringtype"/>
+            <xs:element name="DEG" type="stringtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="DVPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="DEC" type="stringtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="AD" type="stringtype"/>
+            <xs:element name="DEV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="FRAGtype">
+        <xs:sequence>
+            <xs:element name="NR" type="stringtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="ETC" type="stringtype"/>
+            <xs:element name="P" type="stringtype"/>
+            <xs:element name="M" type="stringtype"/>
+            <xs:element name="OD" type="stringtype"/>
+            <xs:element name="NN" type="stringtype"/>
+            <xs:element name="DT" type="stringtype"/>
+            <xs:element name="CD" type="stringtype"/>
+            <xs:element name="NT" type="stringtype"/>
+            <xs:element name="JJ" type="stringtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="INTJtype">
+        <xs:sequence>
+            <xs:element name="IJ" type="stringtype"/>
+            <xs:element name="SP" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="IPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="AS" type="stringtype"/>
+            <xs:element name="LST" type="LSTtype"/>
+            <xs:element name="WHNP" type="WHNPtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="SP" type="stringtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="ETC" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="DEC" type="stringtype"/>
+            <xs:element name="DVP" type="DVPtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="INTJ" type="INTJtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="LCPtype">
+        <xs:sequence>
+            <xs:element name="LC" type="stringtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="NT" type="stringtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="IP" type="IPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="LSTtype">
+        <xs:sequence>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="CD" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="NPtype">
+        <xs:sequence>
+            <xs:element name="JJ" type="stringtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="WHNP" type="WHNPtype"/>
+            <xs:element name="MSP" type="stringtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="DEG" type="stringtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="NR" type="stringtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="NR" type="stringtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="ETC" type="stringtype"/>
+            <xs:element name="P" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="INTJ" type="INTJtype"/>
+            <xs:element name="VC" type="stringtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="NT" type="stringtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="DT" type="stringtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="PN" type="stringtype"/>
+            <xs:element name="NN" type="stringtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="FW" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="NT" type="stringtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="P" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PRNtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="QPtype">
+        <xs:sequence>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="NT" type="stringtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="NR" type="stringtype"/>
+            <xs:element name="OD" type="stringtype"/>
+            <xs:element name="M" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="NN" type="stringtype"/>
+            <xs:element name="CD" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Stype">
+        <xs:sequence>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="FRAG" type="FRAGtype"/>
+            <xs:element name="IP" type="IPtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="UCPtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="ETC" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="CC" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VCDtype">
+        <xs:sequence>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="VA" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VCPtype">
+        <xs:sequence>
+            <xs:element name="VC" type="stringtype"/>
+            <xs:element name="VA" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VNVtype">
+        <xs:sequence>
+            <xs:element name="VC" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+            <xs:element name="AD" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VPtype">
+        <xs:sequence>
+            <xs:element name="SB" type="stringtype"/>
+            <xs:element name="AS" type="stringtype"/>
+            <xs:element name="VSB" type="VSBtype"/>
+            <xs:element name="MSP" type="stringtype"/>
+            <xs:element name="CP" type="CPtype"/>
+            <xs:element name="VCD" type="VCDtype"/>
+            <xs:element name="LCP" type="LCPtype"/>
+            <xs:element name="ADJP" type="ADJPtype"/>
+            <xs:element name="NONE" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="VCP" type="VCPtype"/>
+            <xs:element name="ETC" type="stringtype"/>
+            <xs:element name="P" type="stringtype"/>
+            <xs:element name="QP" type="QPtype"/>
+            <xs:element name="CLP" type="CLPtype"/>
+            <xs:element name="DER" type="stringtype"/>
+            <xs:element name="LB" type="stringtype"/>
+            <xs:element name="DNP" type="DNPtype"/>
+            <xs:element name="VRD" type="VRDtype"/>
+            <xs:element name="PP" type="PPtype"/>
+            <xs:element name="VC" type="stringtype"/>
+            <xs:element name="BA" type="stringtype"/>
+            <xs:element name="VPT" type="VPTtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="DVP" type="DVPtype"/>
+            <xs:element name="PRN" type="PRNtype"/>
+            <xs:element name="DP" type="DPtype"/>
+            <xs:element name="ADVP" type="ADVPtype"/>
+            <xs:element name="CC" type="stringtype"/>
+            <xs:element name="VA" type="stringtype"/>
+            <xs:element name="VE" type="stringtype"/>
+            <xs:element name="IP" type="IPtype"/>
+            <xs:element name="UCP" type="UCPtype"/>
+            <xs:element name="VP" type="VPtype"/>
+            <xs:element name="VNV" type="VNVtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VPTtype">
+        <xs:sequence>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="AD" type="stringtype"/>
+            <xs:element name="DER" type="stringtype"/>
+            <xs:element name="VA" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VRDtype">
+        <xs:sequence>
+            <xs:element name="NP" type="NPtype"/>
+            <xs:element name="VCD" type="VCDtype"/>
+            <xs:element name="PU" type="stringtype"/>
+            <xs:element name="VA" type="stringtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="VSBtype">
+        <xs:sequence>
+            <xs:element name="VCD" type="VCDtype"/>
+            <xs:element name="VV" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="WHNPtype">
+        <xs:sequence>
+            <xs:element name="NONE" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="WHPPtype">
+        <xs:sequence>
+            <xs:element name="NONE" type="stringtype"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="stringtype">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    
+</xs:schema>
